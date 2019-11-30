@@ -37,8 +37,11 @@ $ git clone https://github.com/claytten/Final_Test_Database_System.git
 - [x] - using AJAX
 
 ## Main Language
-- [x] - PHP
+- [x] - PHP7.2
 - [x] - Javascript
+
+## Main Database
+- [x] - MySQL 14.14
 
 #### License
 
