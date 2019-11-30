@@ -13,7 +13,7 @@ include "../../action/koneksi.php";
     <!-- Meta -->
     <meta name="author" content="WahyuAjiSulaiman">
 
-    <title>Home</title>
+    <title>History</title>
 
     <!-- vendor css -->
     <link href="../../lib/fontawesome-free/css/all.min.css" rel="stylesheet">
