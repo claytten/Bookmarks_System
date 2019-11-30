@@ -16,28 +16,12 @@
     fetchGitUserInfo(userInput);
   }
 
-  // function load_data(name,avatar,html_url) {
-  //   $.ajax({
-  //    url:"../../action/users/add_history.php",
-  //    method:"POST",
-  //    data:{
-  //     name: name,
-  //     avatar: avatar,
-  //     html_url: html_url
-  //    },
-  //    success:function(data)
-  //    {
-  //     console.log(data);
-  //    }
-  //   });
-  // }
-
   //Add card click event
   addCardBtnElement.addEventListener('click', addGitUserCard, false);
 
   //To get github user data via `Fetch API`
   function fetchGitUserInfo(username) {
-    var name = username || 'claytten';
+    var name = username || '';
     var url = 'https://api.github.com/users/' + name;
 
     fetch(url, { method: 'GET' })
@@ -50,19 +34,22 @@
         cardElement.querySelector('.card__followers span').textContent = response.followers;
         cardElement.querySelector('.card__temp span').textContent = response.company;
         cardElement.querySelector('.card__html_url span').textContent = response.html_url;
-        $.ajax({
-         url:"../../action/users/add_history.php",
-         method:"POST",
-         data:{
-          name:response.name,
-          avatar: response.avatar_url,
-          html_url: response.html_url
-         },
-         success:function(data)
-         {
-          console.log(data);
-         }
-        });
+        console.log(response.name);
+        if(name != '' && response.html_url != null) {
+          $.ajax({
+           url:"../../action/users/add_history.php",
+           method:"POST",
+           data:{
+            name:response.name,
+            avatar: response.avatar_url,
+            html_url: response.html_url
+           },
+           success:function(data)
+           {
+            console.log(data);
+           }
+          });
+        }
       })
   }
   

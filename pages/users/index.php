@@ -1,6 +1,9 @@
 <?php
-include "../../action/auth_users.php"
+include "../.../action/koneksi.php";
+include "../../action/auth_users.php";
 
+$filter = str_replace("'","", $_GET['name_github']);
+$name_github = $filter;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +49,21 @@ include "../../action/auth_users.php"
               <p class="card__followers"><b>Followers: </b> <span></span></p>
               <p class="card__html_url" id="card_html"><b>Url: </b> <span></span></p>
               <div class="add__to-card">
-                <input type="text" class="form-control add__input" placeholder="Enter a github username" /> <button class="btn btn-az-secondary btn-block add__btn">Submit</button>
+                <?php
+                if($name_github != "") {
+                  ?>
+                    <input type="text" class="form-control add__input" placeholder="Enter a github username" value="<?php echo $name_github?>" /> 
+                    <button class="btn btn-az-secondary btn-block add__btn" >Submit</button>
+                  <?php
+                } else {
+
+                  ?>
+                    <input type="text" class="form-control add__input" placeholder="Enter a github username" /> 
+                    <button class="btn btn-az-secondary btn-block add__btn" >Submit</button>
+                  <?php
+                }
+                ?>
+                
               </div>
             </div><!-- card-body -->
           </div><!-- card -->
@@ -57,5 +74,6 @@ include "../../action/auth_users.php"
     <?php include"../../layouts/users/footer.php"?>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../../assets/js/app.js"  type="text/javascript" charset="utf-8"  ></script>
+    
   </body>
 </html>

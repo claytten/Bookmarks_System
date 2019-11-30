@@ -5,10 +5,14 @@
       <a href="" id="azNavShow" class="az-header-menu-icon d-lg-none"><span></span></a>
       <a href="" id="azContentBodyHide" class="az-header-arrow d-md-none"><i class="icon ion-md-arrow-back"></i></a>
     </div><!-- az-header-left -->
+
     <div class="az-header-center">
-      <input type="search" class="form-control" placeholder="Search for username github">
-      <button class="btn"><i class="fas fa-search"></i></button>
+      <form action="../../action/users/search/name_github.php" method="POST" accept-charset="utf-8">
+        <input type="text" class="form-control" placeholder="Search for username github" name="name_github">
+        <button type="submit" class="btn"><i class="fas fa-search"></i></button>
+      </form>
     </div><!-- az-header-center -->
+    
     <div class="az-header-right">
       <div class="dropdown az-profile-menu">
         <a href="" class="az-img-user"><img src="https://via.placeholder.com/500x500" alt=""></a>

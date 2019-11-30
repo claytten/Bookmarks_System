@@ -34,8 +34,7 @@ include "../../action/koneksi.php";
           <div style="padding-left:20px; display:flex">
             <h2>History</h2>
             <div class="az-header-center" style="margin-right:0">
-              <input type="search" class="form-control" placeholder="Search for History">
-              <button class="btn"><i class="fas fa-search"></i></button>
+              <input type="text" class="form-control" placeholder="Search for History name/date/url" name='search_history' id="search_history">
             </div><!-- az-header-center -->
           </div>
           <div class="az-mail-options">
@@ -55,42 +54,7 @@ include "../../action/koneksi.php";
             </div><!-- btn-group -->
           </div><!-- az-mail-options -->
 
-          <div class="az-mail-list">
-            <?php
-              $id_user = $_SESSION['id_user'];
-              $query = "SELECT * from history WHERE id_user='$id_user';";
-              $result = mysqli_query($connect, $query) or die(mysqli_error($connect));
-              while ($row = mysqli_fetch_array($result))
-              { 
-                if($row > 0) {
-                ?>
-                <div class="az-mail-item unread">
-                  <div class="az-mail-checkbox">
-                    <label class="ckbox">
-                      <input type="checkbox" name="ids[]" value="<?php echo $row['id']?>">
-                      <span></span>
-                    </label>
-                  </div><!-- az-mail-checkbox -->
-
-                  <?php include"../../action/star_condition.php" ?>
-
-                  <div class="az-img-user"><img src="<?php echo $row['avatar']?>" alt=""></div>
-                  <div class="az-mail-body">
-                    <div class="az-mail-from"><?php echo date('d-m-Y', strtotime($row['date']) ) ?></div>
-                    <a href="<?php echo $row['url']?>" target="_blank" title="">
-                      <div class="az-mail-subject">
-                      <strong><?php echo $row['name_github']?></strong><br>
-                      <span><?php echo $row['url']?></span>
-                    </div>
-                    </a>
-                  </div><!-- az-mail-body -->
-                  <div class="az-mail-attachment"></div>
-                  <div class="az-mail-date"><?php echo date('H:i', strtotime($row['date']) ) ?></div>
-                </div><!-- az-mail-item -->
-                <?php
-                }
-              }
-            ?>
+          <div class="az-mail-list" id="historyy">
           </div><!-- az-mail-list -->
 
           <div class="mg-lg-b-30"></div>
@@ -104,12 +68,35 @@ include "../../action/koneksi.php";
       include"../../layouts/users/footer.php";
     ?>
 
-    <script src="../../assets/js/app.js"  type="text/javascript" charset="utf-8" async defer></script>
     <script src="../../assets/js/search_github_front.js" type="text/javascript" charset="utf-8" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
       $(function(){
         'use strict'
-
+        function load_data(query){
+          $.ajax({
+           url:"../../action/users/search/history.php",
+           method:"POST",
+           data:{
+            query:query
+            },
+           success:function(data)
+           {
+            $('#historyy').html(data);
+           }
+          });
+        }
+        load_data();
+       $("#search_history").keyup(function() {
+           var search = $(this).val();
+           console.log(search);
+           if (search != '') {
+               load_data(search);
+           }
+           else {
+               load_data();
+           }
+       });
         // showing modal with effect
         $('.modal-effect').on('click', function(e){
           e.preventDefault();
