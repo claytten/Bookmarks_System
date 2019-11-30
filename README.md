@@ -10,7 +10,7 @@ $ git clone https://github.com/claytten/Final_Test_Database_System.git
 
 #### `Step 2` - cd in the repo
 
-#### 'Step 3' - Import ta_sbd.sql to your database
+#### `Step 3` - Import ta_sbd.sql to your database
 
 #### `Step 4` - Set Up your server (if you use linux can run php -S localhost:8000 || windows can use XAMPP and check apache2 & MySQL)
 
