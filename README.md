@@ -1,4 +1,4 @@
-# [Design System History & Bookmark for searching username on github]
+# [System History & Bookmark for searching username on github]
 
 ### Installation
 
