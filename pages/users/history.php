@@ -48,9 +48,7 @@ include "../../action/koneksi.php";
               </a>
               <!-- <button class="btn btn-light disabled"><i class="typcn typcn-archive"></i></button> -->
               <!-- <button class="btn btn-light disabled"><i class="typcn typcn-info-outline"></i></button> -->
-              <a href="../../action/users/delete_history?id=checkbox[]" title="">
-                <button class="btn btn-light disabled"><i class="typcn typcn-trash"></i></button>
-              </a>
+              <button class="btn btn-light" id="checks"><i class="typcn typcn-trash"></i></button>
             </div><!-- btn-group -->
           </div><!-- az-mail-options -->
 
@@ -70,47 +68,6 @@ include "../../action/koneksi.php";
 
     <script src="../../assets/js/search_github_front.js" type="text/javascript" charset="utf-8" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-      $(function(){
-        'use strict'
-        function load_data(query){
-          $.ajax({
-           url:"../../action/users/search/history.php",
-           method:"POST",
-           data:{
-            query:query
-            },
-           success:function(data)
-           {
-            $('#historyy').html(data);
-           }
-          });
-        }
-        load_data();
-       $("#search_history").keyup(function() {
-           var search = $(this).val();
-           console.log(search);
-           if (search != '') {
-               load_data(search);
-           }
-           else {
-               load_data();
-           }
-       });
-        // showing modal with effect
-        $('.modal-effect').on('click', function(e){
-          e.preventDefault();
-          var effect = $(this).attr('data-effect');
-          $('#modaldemo1').addClass(effect);
-        });
-
-        // hide modal with effect
-        $('#modaldemo8').on('hidden.bs.modal', function (e) {
-          $(this).removeClass (function (index, className) {
-              return (className.match (/(^|\s)effect-\S+/g) || []).join(' ');
-          });
-        });
-      });
-    </script>
+    <script src="../../assets/js/histories.js" type="text/javascript" charset="utf-8" defer></script>
   </body>
 </html>

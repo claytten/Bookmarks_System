@@ -14,8 +14,6 @@ $(function(){
         $(this).closest('.az-mail-item').removeClass('selected');
         $(this).attr('checked', false);
       });
-
-      $('.az-mail-options .btn:not(:first-child)').addClass('disabled');
     }
   });
 

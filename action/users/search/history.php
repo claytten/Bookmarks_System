@@ -31,7 +31,7 @@ if(mysqli_num_rows($result) > 0) {
 				        <div class="az-mail-item unread">
                   <div class="az-mail-checkbox">
                     <label class="ckbox">
-                      <input type="checkbox" name="ids[]" value="'.$row['id'].'">
+                      <input type="checkbox" name="ids[]" value="'.$row['id'].'" id="get__checkbox">
                       <span></span>
                     </label>
                   </div><!-- az-mail-checkbox -->
