@@ -24,6 +24,12 @@ if(isset($_POST["query"]) != null ) {
 	$query = "SELECT * from history WHERE id_user='$id_user' ORDER BY date DESC";
 }
 
+//get data star condition
+ob_start();
+include "../../star_condition.php";
+$star_condition = ob_get_contents();
+ob_end_clean();
+
 $result = mysqli_query($connect, $query);
 if(mysqli_num_rows($result) > 0) {
 	while ($row = mysqli_fetch_array($result)) {
@@ -36,7 +42,7 @@ if(mysqli_num_rows($result) > 0) {
                     </label>
                   </div><!-- az-mail-checkbox -->
 
-                  <?php include"../../action/star_condition.php" ?>
+                  '.$star_condition.'
 
                   <div class="az-img-user"><img src="'.$row['avatar'].'" alt=""></div>
                   <div class="az-mail-body">
