@@ -6,8 +6,7 @@
       <a href="" id="azContentBodyHide" class="az-header-arrow d-md-none"><i class="icon ion-md-arrow-back"></i></a>
     </div><!-- az-header-left -->
     <div class="az-header-center">
-      <input type="search" class="form-control" placeholder="Search for username">
-      <button class="btn"><i class="fas fa-search"></i></button>
+      
     </div><!-- az-header-center -->
     <div class="az-header-right">
       <div class="dropdown az-profile-menu">
