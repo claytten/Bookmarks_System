@@ -57,53 +57,95 @@ while ($row = mysqli_fetch_array($result))
         </div><!-- az-content-left -->
         <div class="az-content-body az-content-body-profile">
           <nav class="nav az-nav-line">
-            <a href="" class="nav-link active" data-toggle="tab">Overview</a>
-            <a href="" class="nav-link" data-toggle="tab">History</a>
-            <a href="" class="nav-link" data-toggle="tab">Bookmarks</a>
-            <a href="" class="nav-link" data-toggle="tab">Account Settings</a>
+            <a href="../../" class="nav-link active" >Overview</a>
+            <a href="./history.php" class="nav-link" >History</a>
+            <a href="" class="nav-link" >Bookmarks</a>
+            <a href="" class="nav-link" >Account Settings</a>
           </nav>
 
           <div class="az-profile-body">
+            <?php
+            $query = "SELECT * FROM bookmarks";
+            $result = mysqli_query($connect, $query1);
+            ?>
 
+            <?php
+            ?>
             <div class="row mg-b-20">
               <div class="col-md-7 col-xl-8">
                 <div class="az-content-label tx-13 mg-b-20">Traffic Details</div>
-                <div class="az-traffic-detail-item">
-                  <div>
-                    <span>People with title Founder &amp; CEO</span>
-                    <span>24 <span>(20%)</span></span>
+
+                <?php
+                $query = "SELECT count(*) FROM users where roles='user'";
+                $result = mysqli_query($connect, $query);
+                while ($row = mysqli_fetch_array($result)) {
+                  ?>
+                    <div class="az-traffic-detail-item">
+                      <div>
+                        <span>Users</span>
+                        <span><?php echo $row['count(*)']?> <span>(<?php echo $row['count(*)']?>%)</span></span>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar wd-20p" role="progressbar" style="width: <?php echo $row['count(*)']?>%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div><!-- progress -->
+                    </div>
+                  <?php
+                }
+                ?>
+                
+                <?php
+                $query = "SELECT count(*) FROM history";
+                $result = mysqli_query($connect, $query);
+                while ($row = mysqli_fetch_array($result)) {
+                  ?>
+                  <div class="az-traffic-detail-item">
+                    <div>
+                      <span>History</span>
+                      <span><?php echo $row['count(*)']?> <span>(<?php echo $row['count(*)']?>%)</span></span>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar bg-success wd-15p" role="progressbar" style="width: <?php echo $row['count(*)']?>%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div><!-- progress -->
                   </div>
-                  <div class="progress">
-                    <div class="progress-bar wd-20p" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div><!-- progress -->
-                </div>
-                <div class="az-traffic-detail-item">
-                  <div>
-                    <span>People with title UX Designer</span>
-                    <span>16 <span>(15%)</span></span>
+                  <?php
+                }
+                ?>
+
+                <?php
+                $query = "SELECT count(*) FROM bookmarks";
+                $result = mysqli_query($connect, $query);
+                while ($row = mysqli_fetch_array($result)) {
+                  ?>
+                  <div class="az-traffic-detail-item">
+                    <div>
+                      <span>Bookmarks</span>
+                      <span><?php echo $row['count(*)']?> <span>(<?php echo $row['count(*)']?>%)</span></span>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar bg-pink wd-45p" role="progressbar" style="width: <?php echo $row['count(*)']?>%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div><!-- progress -->
                   </div>
-                  <div class="progress">
-                    <div class="progress-bar bg-success wd-15p" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div><!-- progress -->
-                </div>
-                <div class="az-traffic-detail-item">
-                  <div>
-                    <span>People with title Recruitment</span>
-                    <span>100 <span>(100%)</span></span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar bg-pink wd-45p" role="progressbar" style="width: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div><!-- progress -->
-                </div>
-                <div class="az-traffic-detail-item">
-                  <div>
-                    <span>People with title Software Engineer</span>
-                    <span>32 <span>(25%)</span></span>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar bg-teal wd-25p" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div><!-- progress -->
-                </div>
+                  <?php
+                }
+                ?>
+
+                <?php
+                $query = "SELECT count(*) FROM users where roles='admin'";
+                $result = mysqli_query($connect, $query);
+                while ($row = mysqli_fetch_array($result)) {
+                  ?>
+                    <div class="az-traffic-detail-item">
+                      <div>
+                        <span>Admin</span>
+                        <span><?php echo $row['count(*)']?> <span>(<?php echo $row['count(*)']?>%)</span></span>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar bg-teal wd-25p" role="progressbar" style="width: <?php echo $row['count(*)']?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div><!-- progress -->
+                    </div>
+                  <?php
+                }
+                ?>
               </div><!-- col -->
               <!-- <div class="col-md-5 col-xl-4 mg-t-40 mg-md-t-0">
                 
