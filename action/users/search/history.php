@@ -57,6 +57,35 @@ if(mysqli_num_rows($result) > 0) {
                   <div class="az-mail-attachment"></div>
                   <div class="az-mail-date">'.date('H:i', strtotime($row['date']) ).'</div>
                 </div><!-- az-mail-item -->
+
+                <div id="modaldemo1" class="modal">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content modal-content-demo">
+                      <div class="modal-header">
+                        <h6 class="modal-title">Bookmarks</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                          <form action="../../action/users/add_bookmarks.php" method="POST" accept-charset="utf-8">
+                            <div class="modal-body">
+                              <div class="m-b-20">
+                                <input type="hidden" name="id" value="'.$row[id].'">
+                                <label>Name Bookmark</label>
+                                <input type="text" name="name_github" class="form-control" placeholder="Input Name Bookmark" value="'.$row['name_github'].'">
+                                <input type="hidden" name="url_github" class="form-control" value="'.$row['url'].'" readonly>
+                                <input type="hidden" name="avatar_github" class="form-control" value="'.$row['avatar'] .'" readonly>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-indigo" id="saved">Save</button>
+                              <button type="button" class="btn btn-outline-light" id="closed" data-dismiss="modal">Close</button>
+                            </div>
+                          </form>
+                      
+                    </div>
+                  </div><!-- modal-dialog -->
+                </div><!-- modal -->
 			';
   }
     echo $output;

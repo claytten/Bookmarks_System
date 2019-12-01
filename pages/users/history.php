@@ -19,6 +19,7 @@ include "../../action/koneksi.php";
     <link href="../../lib/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="../../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
     <link href="../../lib/typicons.font/typicons.css" rel="stylesheet">
+    <link href="../../lib/select2/css/select2.min.css" rel="stylesheet">
 
     <!-- style CSS -->
     <link rel="stylesheet" href="../../assets/css/user.css">
@@ -60,31 +61,6 @@ include "../../action/koneksi.php";
         </div><!-- az-content-body -->
       </div><!-- container -->
     </div><!-- az-content -->
-    <div id="modaldemo1" class="modal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content modal-content-demo">
-          <div class="modal-header">
-            <h6 class="modal-title">Bookmarks</h6>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form action="../../action/users/add_bookmarks.php" method="POST" accept-charset="utf-8">
-            <div class="modal-body">
-              <div class="m-b-20">
-                <input type="text" name="name" class="form-control" placeholder="Input Name Bookmark" value="<?php echo $row['name_github']?>">
-                <input class="form-control" placeholder="Input folder" type="text" name="bookmark">
-                <input type="text" name="url" class="form-control" value="<?php echo $row['url']?>">
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-indigo" id="saved">Save</button>
-              <button type="button" class="btn btn-outline-light" id="closed" data-dismiss="modal">Close</button>
-            </div>
-          </form>
-        </div>
-      </div><!-- modal-dialog -->
-    </div><!-- modal -->
     <?php 
       include"../../layouts/users/footer.php";
     ?>
@@ -92,5 +68,6 @@ include "../../action/koneksi.php";
     <script src="../../assets/js/search_github_front.js" type="text/javascript" charset="utf-8" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../assets/js/histories.js" type="text/javascript" charset="utf-8" defer></script>
+    <script src="../../lib/select2/js/select2.min.js"></script>
   </body>
 </html>
