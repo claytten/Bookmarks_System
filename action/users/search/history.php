@@ -14,12 +14,7 @@ if(isset($_POST["query"]) != null ) {
 	$search = mysqli_real_escape_string($connect, $valus);
   
 	$query = "
-		  SELECT * FROM history 
-		  WHERE id_user LIKE '%".$search."%'
-		  OR name_github LIKE '%".$search."%' 
-		  OR url LIKE '%".$search."%' 
-		  OR date LIKE '%".$search."%'
-      ORDER BY date DESC
+		  SELECT * FROM history WHERE id_user='$id_user' AND name_github LIKE '%$search%' OR date LIKE '%$search%'  ORDER BY date DESC
 	";
 } else {
 	$query = "SELECT * from history WHERE id_user='$id_user' ORDER BY date DESC";
