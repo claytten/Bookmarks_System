@@ -55,9 +55,7 @@ $(function(){
        },
        success:function(data)
        {
-        if(data == true) {
-          window.location.reload("./history.php")
-        }
+        window.location.reload("./history.php")
        }
       });
     }

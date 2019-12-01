@@ -35,18 +35,17 @@ include"../../action/koneksi.php";
           </div>
           <div class="az-mail-options">
             <label class="ckbox">
+              <input id="checkAll" type="checkbox">
+              <span></span>
             </label>
             <div class="btn-group">
               <a href="./bookmarks.php" title="">
                 <button class="btn btn-light"><i class="typcn typcn-arrow-sync"></i></button>
               </a>
-              <a href="" title="" data-toggle="modal" data-target="#modaldemo1" class="modal-effect" data-effect="effect-super-scaled">
-                <button class="btn btn-light"><i class="typcn typcn-arrow-down-outline"></i></button>
-              </a>
               <!-- <button class="btn btn-light disabled"><i class="typcn typcn-info-outline"></i></button> -->
               <button class="btn btn-light" id="checks"><i class="typcn typcn-trash"></i></button>
               <!-- <button class="btn btn-light disabled"><i class="typcn typcn-folder"></i></button> -->
-              <button class="btn btn-light"><i class="typcn typcn-edit"></i></button>
+              <button class="btn btn-light" id="edit"><i class="typcn typcn-edit"></i></button>
             </div><!-- btn-group -->
           </div><!-- az-mail-options -->
         <?php
@@ -56,7 +55,7 @@ include"../../action/koneksi.php";
         $result2 = mysqli_query($connect,$query2);
         if(mysqli_num_rows($result1) > 0) {
           while ($row = mysqli_fetch_array($result1)) {
-              if( $row['id_directory'] != "/") {
+              if( $row['id_directory'] == 2) {
                 ?>
                   <div class="az-mail-list treeview-animated">
                     <ul class="treeview-animated-list" style="list-style-type: none; padding-left: 0">
@@ -67,15 +66,11 @@ include"../../action/koneksi.php";
                             ?>
                               <div class="az-mail-item unread">
                                 <div class="az-mail-checkbox">
-                                  <label class="ckbox">
-                                    <input type="checkbox" name="ids2[]" value="<?php echo $row2['id']?>>
-                                    <span></span>
-                                  </label>
                                 </div><!-- az-mail-checkbox -->
                                 <div class="az-img-user"><i class="typcn typcn-folder" style="font-size:23px"></i></div>
                                 <div class="az-mail-body">
                                   <div class="az-mail-subject caret">
-                                    <strong><?php echo $row1['folder'] ?></strong>
+                                    <strong><?php echo str_replace("_", " ", $row1['folder']) ?></strong>
                                   </div>
                                 </div><!-- az-mail-body -->
                               </div><!-- az-mail-item -->
@@ -89,23 +84,28 @@ include"../../action/koneksi.php";
                             <div class="az-mail-item unread">
                               <div class="az-mail-checkbox">
                                 <label class="ckbox">
-                                  <input type="checkbox" name="ids1[]" value="<?php echo $row1['id']?>">
+                                  <input type="checkbox" name="ids[]" value="<?php echo $row['id']?>" id="get__checkbox">
                                   <span></span>
                                 </label>
                               </div><!-- az-mail-checkbox -->
+                              <input type="hidden" name="star" value="<?php echo $row['star'] ?>">
                               <div class="az-img-user">
                                 <div class="az-img-user">
-                                  <img src="https://via.placeholder.com/500x500" alt="">
+                                  <img src="<?php echo $row['avatar']?>" alt="">
                                 </div><!-- az-img-user -->
                               </div>
                               <div class="az-mail-body closed">
-                                <div class="az-mail-from">19-10-2019</div>
+                                <div class="az-mail-from"><?php echo date('d-m-Y', strtotime($row['date']) )?></div>
                                 <div class="az-mail-subject caret">
-                                  <strong>Document 1</strong>
-                                  <span>enean commodo li gula eget dolor cum socia eget dolor enean commodo li gula eget dolor cum socia eget dolor...</span>
+                                  <a href="<?php echo $row['url']?>" target="_blank" title="">
+                                    <div class="az-mail-subject">
+                                    <strong><?php echo $row['name_github']?>'</strong><br>
+                                    <span><?php echo $row['url']?></span>
+                                  </div>
+                                  </a>
                                 </div>
                               </div><!-- az-mail-body -->
-                              <div class="az-mail-date">Yesterday</div>
+                              <div class="az-mail-date"><?php echo date('H:i', strtotime($row['date']) )?></div>
                             </div><!-- az-mail-item -->
                           </li>
                         </ul>
@@ -113,117 +113,79 @@ include"../../action/koneksi.php";
                     </ul>
                   </div><!-- az-content-body -->
                 <?php
-              } else {
-                ?>
-                  <div class="az-mail-item unread">
-                    <div class="az-mail-checkbox">
-                      <label class="ckbox">
-                        <input type="checkbox">
-                        <span></span>
-                      </label>
-                    </div><!-- az-mail-checkbox -->
-                    <div class="az-img-user">
-                      <div class="az-img-user">
-                        <img src="https://via.placeholder.com/500x500" alt="">
-                      </div><!-- az-img-user -->
-                    </div>
-                    <div class="az-mail-body closed">
-                      <div class="az-mail-from">19-10-2019</div>
-                      <div class="az-mail-subject caret">
-                        <strong>Document 1</strong>
-                        <span>enean commodo li gula eget dolor cum socia eget dolor enean commodo li gula eget dolor cum socia eget dolor...</span>
-                      </div>
-                    </div><!-- az-mail-body -->
-                    <div class="az-mail-date">Yesterday</div>
-                  </div><!-- az-mail-item -->
-                <?php
-              }
+              } 
           }
         } else {
-          while($row1 = mysqli_fetch_array($result2)) {
-            if (mysqli_num_rows($result2) > 0 && $row1['folder'] != "/") {
-              ?>
-                <div class="az-mail-item unread">
-                  <div class="az-mail-checkbox">
-                    <label class="ckbox">
-                      <input type="checkbox" name="ids2[]" value="<?php echo $row1['id']?>">
-                      <span></span>
-                    </label>
-                  </div><!-- az-mail-checkbox -->
-                  <div class="az-img-user"><i class="typcn typcn-folder" style="font-size:23px"></i></div>
-                  <div class="az-mail-body">
-                    <div class="az-mail-subject caret">
-                      <strong><?php echo $row1['folder'] ?></strong>
-                    </div>
-                  </div><!-- az-mail-body -->
-                </div><!-- az-mail-item -->
-              <?php
-            }
-          }
-          
+          ?>
+          <div class="az-mail-item unread">
+            <div class="az-mail-body">
+              <div class="az-mail-subject caret">
+                <strong>Data Not Found</strong>
+              </div>
+            </div><!-- az-mail-body -->
+          </div><!-- az-mail-item -->
+          <?php
         }
         ?>
       </div><!-- container -->
     </div><!-- az-content -->
 
-    <div id="modaldemo1" class="modal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content modal-content-demo">
-          <div class="modal-header">
-            <h6 class="modal-title">New Folder</h6>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form action="../../action/users/add_folder.php" method="POST" accept-charset="utf-8">
-            <div class="modal-body">
-              <div class="m-b-20">
-                <input class="form-control" placeholder="Input folder" type="text" name="folder">
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-indigo" id="saved">Save</button>
-              <button type="button" class="btn btn-outline-light" id="closed" data-dismiss="modal">Close</button>
-            </div>
-          </form>
-        </div>
-      </div><!-- modal-dialog -->
-    </div><!-- modal -->
     <?php include"../../layouts/users/footer.php"?>
+    <script src="../../assets/js/search_github_front.js" type="text/javascript" charset="utf-8" async defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
     $('#checks').on('click', function(e) {
-      var checkboxes1 = document.getElementsByName('ids1[]');
-      var checkboxes2 = document.getElementsByName('ids2[]');
-      var selected1 = [];
-      var selected2 = [];
-      for (var i=0; i<checkboxes1.length; i++) {
-          if (checkboxes1[i].checked) {
-            selected1.push(checkboxes1[i].value);
+      var checkboxes = document.getElementsByName('ids[]');
+      var stars = document.getElementsByName('star');
+      var selected = [];
+      var star = [];
+      for (var i=0; i<checkboxes.length; i++) {
+          if (checkboxes[i].checked) {
+              star.push(stars[i].value);
+              selected.push(checkboxes[i].value);
           }
       }
-      for (var i=0; i<checkboxes2.length; i++) {
-          if (checkboxes2[i].checked) {
-            selected2.push(checkboxes2[i].value);
-          }
-      }
-      if(selected1 != "" || selected2 != "") {
+      if(selected != "") {
         $.ajax({
          url:"../../action/users/delete_bookmark.php",
          method:"POST",
          data:{
-          selected1:selected1,
-          selected2:selected2
+          query1:selected,
+          query2:star
          },
          success:function(data)
-        {
-          if(data == true) {
-            window.location.reload("./bookmarks.php")
-          }
+         {
+          window.location.reload("./bookmark.php")
          }
         });
       }
     });
+    // $('#edit').on('click', function(e) {
+    //   var checkboxes = document.getElementsByName('ids[]');
+    //   var selected = [];
+    //   for (var i=0; i<checkboxes.length; i++) {
+    //       if (checkboxes[i].checked) {
+    //           selected.push(checkboxes[i].value);
+    //       }
+    //   }
+    //   if(selected.length == 1) {
+    //     $.ajax({
+    //      url:"../../action/users/delete_bookmark.php",
+    //      method:"POST",
+    //      data:{
+    //       query:selected
+    //      },
+    //      success:function(data)
+    //      {
+    //       if(data == true) {
+    //         window.location.reload("./history.php")
+    //       }
+    //      }
+    //     });
+    //   } else {
+    //     alert("editnya satu satu budjank";)
+    //   }
+    // });
     </script>
     
   </body>
