@@ -22,12 +22,15 @@ while ($row = mysqli_fetch_array($result))
     <!-- Meta -->
     <meta name="author" content="WahyuAjiSulaiman">
 
-    <title>Home</title>
+    <title>History</title>
 
     <!-- vendor css -->
     <link href="../../lib/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="../../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
     <link href="../../lib/typicons.font/typicons.css" rel="stylesheet">
+    <link href="../../lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="../../lib/select2/css/select2.min.css" rel="stylesheet">
 
     <!-- style CSS -->
     <link rel="stylesheet" href="../../assets/css/user.css">
@@ -57,20 +60,37 @@ while ($row = mysqli_fetch_array($result))
         </div><!-- az-content-left -->
         <div class="az-content-body az-content-body-profile">
           <nav class="nav az-nav-line">
-            <a href="../../" class="nav-link " data-toggle="tab">Overview</a>
-            <a href="./history.php" class="nav-link active" data-toggle="tab">History</a>
-            <a href="" class="nav-link" data-toggle="tab">Bookmarks</a>
-            <a href="" class="nav-link" data-toggle="tab">Account Settings</a>
+            <a href="./index.php" class="nav-link " >Overview</a>
+            <a href="./history.php" class="nav-link active" >History</a>
+            <a href="./bookmarks.php" class="nav-link" >Bookmarks</a>
+            <a href="./account_settings.php" class="nav-link" >Account Settings</a>
           </nav>
 
           <div class="az-profile-body">
-            <?php
-            $query = "SELECT * FROM bookmarks";
-            $result = mysqli_query($connect, $query1);
-            ?>
-
-            <?php
-            ?>
+            <table id="datatable1" class="display responsive nowrap">
+              <thead>
+                <tr>
+                  <th class="wd-15p">Username</th>
+                  <th class="wd-15p">Count History</th>
+                  <th class="wd-15p">Show History</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php
+              $query = "SELECT users.username,count(DISTINCT history.id) AS history FROM users INNER JOIN history ON users.id = history.id_user GROUP BY users.id;";
+              $result = mysqli_query($connect, $query);
+              while ($row = mysqli_fetch_array($result)) {
+              ?>
+                <tr>
+                  <td><?php echo $row['username']?></td>
+                  <td><?php echo $row['history']?></td>
+                  <td><a href="" title=""><i class="fa fa-eye"></i></a></td>
+                </tr>
+              <?php
+              }
+              ?>
+              </tbody>
+            </table>
             <div class="row mg-b-20">
               <div class="col-md-7 col-xl-8">
                 
@@ -90,6 +110,23 @@ while ($row = mysqli_fetch_array($result))
     <?php include"../../layouts/admin/footer.php"?>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../../assets/js/app.js"  type="text/javascript" charset="utf-8"  ></script>
-    <script src="../lib/chart.js/Chart.bundle.min.js"></script>
+    <script src="../../lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+    <script src="../../lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js"></script>
+    <script src="../../lib/select2/js/select2.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        'use strict';
+
+        $('#datatable1').DataTable({
+          responsive: true
+        });
+
+        // Select2
+        $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+      });
+    </script>
   </body>
 </html>

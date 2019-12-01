@@ -22,7 +22,7 @@ while ($row = mysqli_fetch_array($result))
     <!-- Meta -->
     <meta name="author" content="WahyuAjiSulaiman">
 
-    <title>Bookmarks</title>
+    <title>Account Settings</title>
 
     <!-- vendor css -->
     <link href="../../lib/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -62,8 +62,8 @@ while ($row = mysqli_fetch_array($result))
           <nav class="nav az-nav-line">
             <a href="./index.php" class="nav-link " >Overview</a>
             <a href="./history.php" class="nav-link " >History</a>
-            <a href="./bookmarks.php" class="nav-link active" >Bookmarks</a>
-            <a href="./account_settings.php" class="nav-link" >Account Settings</a>
+            <a href="./bookmarks.php" class="nav-link " >Bookmarks</a>
+            <a href="./account_settings.php" class="nav-link active" >Account Settings</a>
           </nav>
 
           <div class="az-profile-body">
@@ -71,20 +71,23 @@ while ($row = mysqli_fetch_array($result))
               <thead>
                 <tr>
                   <th class="wd-15p">Username</th>
-                  <th class="wd-15p">Count History</th>
-                  <th class="wd-15p">Show History</th>
+                  <th class="wd-15p">Roles</th>
+                  <th class="wd-15p">Action</th>
                 </tr>
               </thead>
               <tbody>
               <?php
-              $query = "SELECT users.username,count(DISTINCT bookmarks.id) AS bookmarks FROM users INNER JOIN history ON users.id = history.id_user INNER JOIN bookmarks ON bookmarks.star = history.id GROUP BY users.id;";
+              $query = "SELECT * FROM users;";
               $result = mysqli_query($connect, $query);
               while ($row = mysqli_fetch_array($result)) {
               ?>
                 <tr>
                   <td><?php echo $row['username']?></td>
-                  <td><?php echo $row['bookmarks']?></td>
-                  <td><a href="" title=""><i class="fa fa-eye"></i></a></td>
+                  <td><?php echo $row['roles']?></td>
+                  <td>
+                    <a href="" title=""><i class="fa fa-edit"></i></a>
+                    <a href="" title=""><i class="fa fa-trash-alt"></i></a>
+                  </td>
                 </tr>
               <?php
               }
@@ -120,7 +123,8 @@ while ($row = mysqli_fetch_array($result))
         'use strict';
 
         $('#datatable1').DataTable({
-          responsive: true
+          responsive: true,
+          lengthMenu: [5,10,15,20]
         });
 
         // Select2

@@ -21,8 +21,8 @@
               <img src="https://via.placeholder.com/500x500" alt="">
             </div><!-- az-img-user -->
             <h6><?php echo $_SESSION['name']?></h6>
-            
           </div><!-- az-header-profile -->
+          <a href="./new_account.php" class="dropdown-item"><i class="typcn typcn-plus-outline"></i> New Account</a>
           <a href="./profile.php" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
           <a href="../../action/logout.php" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Sign Out</a>
         </div><!-- dropdown-menu -->

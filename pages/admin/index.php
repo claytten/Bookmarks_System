@@ -57,10 +57,10 @@ while ($row = mysqli_fetch_array($result))
         </div><!-- az-content-left -->
         <div class="az-content-body az-content-body-profile">
           <nav class="nav az-nav-line">
-            <a href="../../" class="nav-link active" >Overview</a>
-            <a href="./history.php" class="nav-link" >History</a>
-            <a href="" class="nav-link" >Bookmarks</a>
-            <a href="" class="nav-link" >Account Settings</a>
+            <a href="./index.php" class="nav-link active" >Overview</a>
+            <a href="./history.php" class="nav-link " >History</a>
+            <a href="./bookmarks.php" class="nav-link" >Bookmarks</a>
+            <a href="./account_settings.php" class="nav-link" >Account Settings</a>
           </nav>
 
           <div class="az-profile-body">
