@@ -27,7 +27,7 @@
             <h6><?php echo $_SESSION['name']?></h6>
             
           </div><!-- az-header-profile -->
-          <a href="./users/profile.php" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
+          <a href="./profile.php" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
           <a href="../../action/logout.php" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Sign Out</a>
         </div><!-- dropdown-menu -->
       </div>

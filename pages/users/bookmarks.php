@@ -45,7 +45,7 @@ include"../../action/koneksi.php";
               <!-- <button class="btn btn-light disabled"><i class="typcn typcn-info-outline"></i></button> -->
               <button class="btn btn-light" id="checks"><i class="typcn typcn-trash"></i></button>
               <!-- <button class="btn btn-light disabled"><i class="typcn typcn-folder"></i></button> -->
-              <button class="btn btn-light" id="edit"><i class="typcn typcn-edit"></i></button>
+              <button class="btn btn-light" id="edits"><i class="typcn typcn-edit"></i></button>
             </div><!-- btn-group -->
           </div><!-- az-mail-options -->
         <?php
@@ -133,60 +133,7 @@ include"../../action/koneksi.php";
     <?php include"../../layouts/users/footer.php"?>
     <script src="../../assets/js/search_github_front.js" type="text/javascript" charset="utf-8" async defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-    $('#checks').on('click', function(e) {
-      var checkboxes = document.getElementsByName('ids[]');
-      var stars = document.getElementsByName('star');
-      var selected = [];
-      var star = [];
-      for (var i=0; i<checkboxes.length; i++) {
-          if (checkboxes[i].checked) {
-              star.push(stars[i].value);
-              selected.push(checkboxes[i].value);
-          }
-      }
-      if(selected != "") {
-        $.ajax({
-         url:"../../action/users/delete_bookmark.php",
-         method:"POST",
-         data:{
-          query1:selected,
-          query2:star
-         },
-         success:function(data)
-         {
-          window.location.reload("./bookmark.php")
-         }
-        });
-      }
-    });
-    // $('#edit').on('click', function(e) {
-    //   var checkboxes = document.getElementsByName('ids[]');
-    //   var selected = [];
-    //   for (var i=0; i<checkboxes.length; i++) {
-    //       if (checkboxes[i].checked) {
-    //           selected.push(checkboxes[i].value);
-    //       }
-    //   }
-    //   if(selected.length == 1) {
-    //     $.ajax({
-    //      url:"../../action/users/delete_bookmark.php",
-    //      method:"POST",
-    //      data:{
-    //       query:selected
-    //      },
-    //      success:function(data)
-    //      {
-    //       if(data == true) {
-    //         window.location.reload("./history.php")
-    //       }
-    //      }
-    //     });
-    //   } else {
-    //     alert("editnya satu satu budjank";)
-    //   }
-    // });
-    </script>
+    <script src="../../assets/js/bookmarks.js" type="text/javascript" charset="utf-8" defer></script>
     
   </body>
 </html>
