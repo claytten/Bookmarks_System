@@ -71,7 +71,7 @@ while ($row = mysqli_fetch_array($result))
               <thead>
                 <tr>
                   <th class="wd-15p">Username</th>
-                  <th class="wd-15p">Count History</th>
+                  <th class="wd-15p">Count Bookmarks</th>
                   <th class="wd-15p">Show History</th>
                 </tr>
               </thead>

@@ -1,6 +1,7 @@
 <?php
 include "../../action/auth_users.php";
 include"../../action/koneksi.php";
+$id_user = $_SESSION['id_user'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +50,7 @@ include"../../action/koneksi.php";
             </div><!-- btn-group -->
           </div><!-- az-mail-options -->
         <?php
-        $query1 = "SELECT * FROM bookmarks";
+        $query1 = "SELECT * FROM bookmarks WHERE id_user='$id_user'";
         $query2 = "SELECT * FROM directories";
         $result1 = mysqli_query($connect, $query1);
         $result2 = mysqli_query($connect,$query2);
