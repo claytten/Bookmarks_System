@@ -36,7 +36,8 @@ CREATE TABLE `bookmarks` (
   `url` varchar(255) NOT NULL,
   `id_directory` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` int(1) NOT NULL
+  `status` int(1) NOT NULL,
+  `star` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -47,9 +48,7 @@ CREATE TABLE `bookmarks` (
 
 CREATE TABLE `directories` (
   `id` int(11) NOT NULL,
-  `parent_id` varchar(60) NOT NULL,
   `folder` varchar(60) DEFAULT NULL,
-  `sub_folder` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
