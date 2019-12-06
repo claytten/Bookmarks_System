@@ -48,7 +48,7 @@ CREATE TABLE `bookmarks` (
 
 CREATE TABLE `directories` (
   `id` int(11) NOT NULL,
-  `folder` varchar(60) DEFAULT NULL,
+  `folder` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
