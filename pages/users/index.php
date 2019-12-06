@@ -1,5 +1,5 @@
 <?php
-include "../.../action/koneksi.php";
+include "../../action/koneksi.php";
 include "../../action/auth_users.php";
 
 $filter = str_replace("'","", $_GET['name_github']);
