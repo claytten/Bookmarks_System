@@ -180,6 +180,5 @@ while ($row = mysqli_fetch_array($result))
     <?php include"../../layouts/admin/footer.php"?>
     <script type="text/javascript" src="../../lib/jquery/jquery-3.4.1.min.js"></script>
     <script src="../../assets/js/app.js"  type="text/javascript" charset="utf-8"  ></script>
-    <script src="../../lib/chart.js/Chart.bundle.min.js"></script>
   </body>
 </html>
