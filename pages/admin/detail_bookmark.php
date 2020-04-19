@@ -157,7 +157,7 @@ while ($row1 = mysqli_fetch_array($result1))
     </div><!-- az-content -->
 
     <?php include"../../layouts/admin/footer.php"?>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../lib/jquery/jquery-3.4.1.min.js"></script>
     <script src="../../assets/js/app.js"  type="text/javascript" charset="utf-8"  ></script>
     <script src="../../lib/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../../lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>

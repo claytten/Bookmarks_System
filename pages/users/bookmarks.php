@@ -150,7 +150,7 @@ $id_user = $_SESSION['id_user'];
 
     <?php include"../../layouts/users/footer.php"?>
     <script src="../../assets/js/search_github_front.js" type="text/javascript" charset="utf-8" async defer></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../lib/jquery/jquery-3.4.1.min.js"></script>
     <script src="../../assets/js/bookmarks.js" type="text/javascript" charset="utf-8" defer></script>
     
   </body>
