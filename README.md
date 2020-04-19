@@ -17,7 +17,7 @@ $ git clone https://github.com/claytten/Final_Test_Database_System.git
 
 #### `Step 3` - Import ta_sbd.sql to your database
 
-#### `Step 4` - Set Up your server (if you use linux can run php -S localhost:8000 || windows can use XAMPP and check apache2 & MySQL)
+#### `Step 4` - Set Up your server (if you use linux can run php -S localhost:<port> || windows can use XAMPP and check apache2 & MySQL)
 
 #### `Step 4` - run your url into browser
 
@@ -44,13 +44,13 @@ $ git clone https://github.com/claytten/Final_Test_Database_System.git
 - [x] - using AJAX
 
 ## Main Language
-- [x] - PHP7.2
+- [x] - PHP7.3
 - [x] - Javascript
 
 ## Main Database
 - [x] - MySQL 14.14
 
-## Email and Passwords
+## Username and Password
  * `admin / admin (role:admin)`
  * `users / users (role:user)`
  
