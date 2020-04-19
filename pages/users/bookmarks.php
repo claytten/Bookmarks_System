@@ -100,7 +100,7 @@ $id_user = $_SESSION['id_user'];
                                 <div class="az-mail-subject caret">
                                   <a href="<?php echo $row['url']?>" target="_blank" title="">
                                     <div class="az-mail-subject">
-                                    <strong><?php echo $row['name_github']?>'</strong><br>
+                                    <strong><?php echo $row['name_github']?></strong><br>
                                     <span><?php echo $row['url']?></span>
                                   </div>
                                   </a>
