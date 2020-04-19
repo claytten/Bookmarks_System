@@ -10,7 +10,7 @@
     </div><!-- az-header-center -->
     <div class="az-header-right">
       <div class="dropdown az-profile-menu">
-        <a class="az-img-user"><img src="https://via.placeholder.com/500x500" alt="" style="cursor:pointer"></a>
+        <a class="az-img-user"><img class="az-img-user" src="https://via.placeholder.com/500x500" alt="" style="cursor:pointer"></a>
         <div class="dropdown-menu">
           <div class="az-dropdown-header d-sm-none">
             <a class="az-header-arrow"><i class="icon ion-md-arrow-back" style="cursor:pointer"></i></a>
