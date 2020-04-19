@@ -46,7 +46,7 @@
               <input type="text" class="form-control" placeholder="Enter your username" name="username">
             </div><!-- form-group -->
             <div class="form-group">
-              <label>Full Name</label>
+              <label>Display Name</label>
               <input type="text" class="form-control" placeholder="Enter your fullname" name="name">
             </div><!-- form-group -->
             <div class="form-group">

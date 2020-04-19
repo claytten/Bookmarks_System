@@ -18,7 +18,23 @@ while ($row = mysqli_fetch_array($result))
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="apple-touch-icon" sizes="57x57" href="../../assets/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../assets/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../assets/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../assets/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../assets/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../assets/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../assets/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="../../assets/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../assets/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../../assets/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <!-- Meta -->
     <meta name="author" content="WahyuAjiSulaiman">
 
@@ -72,6 +88,7 @@ while ($row = mysqli_fetch_array($result))
                 <tr>
                   <th class="wd-15p">Username</th>
                   <th class="wd-15p">Roles</th>
+                  <th class="wd-15p">Status</th>
                   <th class="wd-15p">Action</th>
                 </tr>
               </thead>
@@ -80,16 +97,35 @@ while ($row = mysqli_fetch_array($result))
               $query = "SELECT * FROM users;";
               $result = mysqli_query($connect, $query);
               while ($row = mysqli_fetch_array($result)) {
-              ?>
-                <tr>
-                  <td><?php echo $row['username']?></td>
-                  <td><?php echo $row['roles']?></td>
-                  <td>
-                    <a href="" title=""><i class="fa fa-edit"></i></a>
-                    <a href="" title=""><i class="fa fa-trash-alt"></i></a>
-                  </td>
-                </tr>
-              <?php
+                if($row['id'] !== $id_user) {
+                ?>
+                  <tr>
+                    <td><?php echo $row['username']?></td>
+                    <td><?php echo $row['roles']?></td>
+                    <td>
+                      <?php
+                        if($row['status'] == 1) {
+                          ?>
+                            Active
+                          <?php
+                        } else {
+                          ?>
+                            Non-Active
+                          <?php
+                        }
+                      ?>
+                    </td>
+                    <td>
+                      <a href="./edit_account.php?id=<?php echo $row['id']?>" title="">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                      <a href="../../action/admin/delete_users.php?id=<?php echo $row['id']?>">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    </td>
+                  </tr>
+                <?php
+                }
               }
               ?>
               </tbody>

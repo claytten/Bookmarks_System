@@ -11,6 +11,15 @@ while ($row = mysqli_fetch_array($result))
   $roles = $row['roles'];
 }
 
+$getIdUser = $_GET['id'];
+
+$query1 = "SELECT * FROM users WHERE id='$getIdUser';";
+$result1 = mysqli_query($connect, $query1) or die(mysqli_error($connect));
+while ($row1 = mysqli_fetch_array($result1))
+{ 
+  $getNameUser = $row1['name'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +47,7 @@ while ($row = mysqli_fetch_array($result))
     <!-- Meta -->
     <meta name="author" content="WahyuAjiSulaiman">
 
-    <title>History</title>
+    <title>Bookmarks</title>
 
     <!-- vendor css -->
     <link href="../../lib/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -77,33 +86,56 @@ while ($row = mysqli_fetch_array($result))
         <div class="az-content-body az-content-body-profile">
           <nav class="nav az-nav-line">
             <a href="./index.php" class="nav-link " >Overview</a>
-            <a href="./history.php" class="nav-link active" >History</a>
-            <a href="./bookmarks.php" class="nav-link" >Bookmarks</a>
+            <a href="./history.php" class="nav-link " >History</a>
+            <a href="./bookmarks.php" class="nav-link active" >Bookmarks</a>
             <a href="./account_settings.php" class="nav-link" >Account Settings</a>
           </nav>
 
           <div class="az-profile-body">
-            <h4>Management Account History</h4>
+            <h4>
+            <a href="./bookmarks.php" style="color:black"><i class="fas fa-arrow-left"></i></a>
+            Management Account Bookmark <?php echo $getNameUser ?>
+            </h4>
             <table id="datatable1" class="display responsive nowrap">
-              <thead>
+            <thead>
                 <tr>
-                  <th class="wd-15p">Username</th>
-                  <th class="wd-15p">Count History</th>
-                  <th class="wd-15p">Show History</th>
+                  <th class="wd-15p">No</th>
+                  <th class="wd-15p">Name Bookmark</th>
+                  <th class="wd-15p">Avatar</th>
+                  <th class="wd-15p">Directory</th>
+                  <th class="wd-15p">Date</th>
+                  <th class="wd-15p">Action</th>
                 </tr>
               </thead>
               <tbody>
               <?php
-              $query = "SELECT users.username, users.id,count(DISTINCT history.id) AS history FROM users INNER JOIN history ON users.id = history.id_user GROUP BY users.id;";
+              $query = "SELECT * FROM bookmarks WHERE id_user='$getIdUser'";
               $result = mysqli_query($connect, $query);
+              $no = 1;
               while ($row = mysqli_fetch_array($result)) {
               ?>
                 <tr>
-                  <td><?php echo $row['username']?></td>
-                  <td><?php echo $row['history']?></td>
-                  <td><a href="./detail_history.php?id=<?php echo $row['id']?>"><i class="fa fa-eye"></i></a></td>
+                  <td><?php echo $no?></td>
+                  <td>
+                      <a href="<?php echo $row['url']?>" target="_blank">
+                        <?php echo $row['name_github']?>
+                      </a>
+                  </td>
+                  <td>
+                      <a href="<?php echo $row['avatar']?>" target="_blank">
+                        <i class="fas fa-images"></i>
+                      </a>
+                  </td>
+                  <td>/</td>
+                  <td><?php echo $row['date']?></td>
+                  <td>
+                      <a href="../../action/admin/delete_bookmark.php?id=<?php echo $row['id']?>&id_user=<?php echo $getIdUser ?>">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                  </td>
                 </tr>
               <?php
+              $no++;
               }
               ?>
               </tbody>
@@ -137,7 +169,7 @@ while ($row = mysqli_fetch_array($result))
         'use strict';
 
         $('#datatable1').DataTable({
-          responsive: true,
+          responsive: true
         });
 
         // Select2
