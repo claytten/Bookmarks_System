@@ -61,7 +61,7 @@
                 <input type="text" name="username" class="form-control" placeholder="Enter your username" value="<?php echo $username ?>" required>
               </div><!-- form-group -->
               <div class="form-group">
-                <label>Username Github</label>
+                <label>Display Name</label>
                 <input type="text" name="name" class="form-control" placeholder="Enter your username github" value="<?php echo $name ?>" required>
               </div><!-- form-group -->
               <div class="form-group">

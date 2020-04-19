@@ -11,8 +11,10 @@ if (!empty($_POST)) {
     	$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
         $md5_password = md5($password);
 
-        $query = mysqli_query($connect,"UPDATE users SET name='$name', username='$username', password='$md5_password' WHERE id='$id_user'  ");
+		$query = mysqli_query($connect,"UPDATE users SET name='$name', username='$username', password='$md5_password' WHERE id='$id_user'  ");
+		var_dump($_POST['username']);
 		if($query) {
+			$_SESSION['name'] = $name;
 			header('Location: ../../pages/users/profile.php');
 		} else {
 			echo mysqli_error($connect);

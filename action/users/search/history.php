@@ -79,7 +79,7 @@ if(mysqli_num_rows($result) > 0) {
                             <form action="../../action/users/add_bookmarks.php" method="POST" accept-charset="utf-8">
                               <div class="modal-body">
                                 <div class="m-b-20">
-                                  <input type="hidden" name="id" value="'.$row[id].'">
+                                  <input type="hidden" name="id" value="'.$row['id'].'">
                                   <label>Name Bookmark</label>
                                   <input type="text" name="name_github" class="form-control" placeholder="Input Name Bookmark" value="'.$row['name_github'].'">
                                   <input type="hidden" name="url_github" class="form-control" value="'.$row['url'].'" readonly>
