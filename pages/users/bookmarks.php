@@ -56,7 +56,7 @@ $id_user = $_SESSION['id_user'];
         $result2 = mysqli_query($connect,$query2);
         if(mysqli_num_rows($result1) > 0) {
           while ($row = mysqli_fetch_array($result1)) {
-              if( $row['id_directory'] == 2) {
+              if( $row['id_directory'] == 1) {
                 ?>
                   <div class="az-mail-list treeview-animated">
                     <ul class="treeview-animated-list" style="list-style-type: none; padding-left: 0">
